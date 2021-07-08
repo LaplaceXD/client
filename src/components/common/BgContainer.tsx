@@ -1,10 +1,10 @@
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Box, useColorModeValue, BackgroundProps, LayoutProps, FlexProps } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
 interface Props {
-    bgColor?: string;
-    height?: string;
-    flex?: string;
+    bgColor?: BackgroundProps["bgColor"];
+    height?: LayoutProps["height"];
+    flex?: FlexProps["flex"];
     children?: ReactNode;
 }
 
