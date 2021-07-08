@@ -1,8 +1,9 @@
-import { Stack, useColorModeValue, StackProps } from "@chakra-ui/react";
+import { Stack, StackProps } from "@chakra-ui/react";
+import type { Message } from "../types/message";
 import MessageBox from "./common/MessageBox";
 
 interface Props extends StackProps {
-    messages: Array<{ message: string; name: string }>;
+    messages: Array<Message>;
     colors: {
         container: string;
         senderMessage: string;
