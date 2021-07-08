@@ -1,4 +1,4 @@
-import { Box, BackgroundProps, ColorProps, FlexboxProps, BorderProps } from "@chakra-ui/react";
+import { Box, BackgroundProps, ColorProps, FlexboxProps, BorderProps, ChakraProps } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
 interface Props {
@@ -6,6 +6,7 @@ interface Props {
     color?: ColorProps["color"];
     alignSelf?: FlexboxProps["alignSelf"];
     borderRadius?: BorderProps["borderRadius"];
+    sx?: ChakraProps["sx"];
     children?: ReactNode;
 }
 
