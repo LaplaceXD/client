@@ -1,5 +1,5 @@
 import { ColorModeScript } from "@chakra-ui/color-mode";
-import { myTheme as theme } from "./_app";
+import { theme } from "../src/chakraUI";
 import NextDocument, { Head, Html, Main, NextScript } from "next/document";
 
 class Document extends NextDocument {
