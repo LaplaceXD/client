@@ -1,11 +1,11 @@
-import { Box } from "@chakra-ui/react";
+import { Box, BackgroundProps, ColorProps, FlexboxProps, BorderProps } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
 interface Props {
-    bgColor?: string;
-    color?: string;
-    alignSelf?: string;
-    borderRadius?: string;
+    bgColor?: BackgroundProps["bgColor"];
+    color?: ColorProps["color"];
+    alignSelf?: FlexboxProps["alignSelf"];
+    borderRadius?: BorderProps["borderRadius"];
     children?: ReactNode;
 }
 
