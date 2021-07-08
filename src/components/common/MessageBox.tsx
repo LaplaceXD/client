@@ -16,7 +16,6 @@ function MessageBox({ children, bgColor, color, borderRadius, ...props }: Props)
             bgColor={bgColor || "primary"}
             borderRadius={borderRadius || "32px"}
             color={color || "dark.200"}
-            mb="4px"
             minW="8em"
             maxW="16em"
             wordBreak="break-word"
