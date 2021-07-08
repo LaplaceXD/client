@@ -4,11 +4,12 @@ import {
     SpaceProps,
     LayoutProps,
     BackgroundProps,
+    PositionProps,
     useColorModeValue,
 } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
-interface Props extends SpaceProps, BackgroundProps, LayoutProps {
+interface Props extends SpaceProps, BackgroundProps, LayoutProps, PositionProps {
     flex?: BoxProps["flex"];
     sx?: BoxProps["sx"];
     children?: ReactNode;
