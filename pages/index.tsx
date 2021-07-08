@@ -1,4 +1,4 @@
-import { MouseEvent, useState, useEffect } from "react";
+import { MouseEvent, MouseEventHandler, useState, useEffect } from "react";
 import { Button, Text, Flex, Input, useColorModeValue } from "@chakra-ui/react";
 import { io, Socket } from "socket.io-client";
 import type { Message } from "../src/types/message";
@@ -27,7 +27,7 @@ function Home() {
         setSocket(socket);
     }, []);
 
-    function handleSubmit(e: MouseEvent<HTMLButtonElement, MouseEvent>) {
+    function handleSubmit(e: MouseEvent) {
         e.preventDefault();
         if (!socket) return;
 
