@@ -1,4 +1,4 @@
-import { MouseEvent, MouseEventHandler, useState, useEffect } from "react";
+import { MouseEvent, useState, useEffect } from "react";
 import { Button, Text, Flex, Input, useColorModeValue } from "@chakra-ui/react";
 import { io, Socket } from "socket.io-client";
 import type { Message } from "../src/types/message";
@@ -7,13 +7,15 @@ import MessageDisplay from "../src/components/MessageDisplay";
 import { BgContainer, Content } from "../src/components/common/Wrappers";
 import ThemeToggler from "./../src/components/common/ThemeToggler";
 
+// TODO: Store link into a process.env
+// TODO: Implement rooms and adding feature
 // TODO: Fix the scrolling issues of the messageDisplay, you should not rely on position: fixed
 // TODO: Refactor Time
 function Home() {
     const [socket, setSocket] = useState<Socket>();
     const [user, setUser] = useState("");
     const [message, setMessage] = useState("");
-    const [messages, setMessages] = useState<Array<Message>>([]);
+    const [messages, setMessages] = useState<Message[]>([]);
 
     const neutralColor = useColorModeValue("light.200", "dark.200");
     const inverseNeutral = useColorModeValue("dark.200", "light.200");
@@ -23,20 +25,34 @@ function Home() {
         const name = prompt("Do you have a name?");
         setUser(name || "Jonh");
 
-        const socket = io("https://hoothoot-server.herokuapp.com/");
+        const socket = io(process.env.NEXT_PUBLIC_SERVER_ADDRESS!, {
+            query: { name: name! },
+        });
         setSocket(socket);
+
+        return function () {
+            socket.disconnect();
+        };
     }, []);
+
+    useEffect(() => {
+        if (!socket) return;
+
+        socket.on("receive-message", (data) => {
+            setMessages((v) => [...v, data]);
+        });
+
+        return function () {
+            socket.off("receive-message");
+        };
+    }, [socket]);
 
     function handleSubmit(e: MouseEvent) {
         e.preventDefault();
         if (!socket) return;
 
-        socket.emit("send-message", { message, name: user });
+        socket.emit("send-message", { recepient: "Emilia", message, name: user });
         setMessage("");
-
-        socket.once("receive-message", (data) => {
-            setMessages((v) => [...v, data]);
-        });
     }
 
     return (
